@@ -87,10 +87,7 @@ public class ChatActivity extends AppCompatActivity {
             Intent settingsIntent = new Intent(ChatActivity.this, SettingsActivity.class);
             startActivity(settingsIntent);
         }
-        if(item.getItemId() == R.id.main_all_users_button){
-            Intent allusersIntent = new Intent(ChatActivity.this, AllUsersActivity.class);
-            startActivity(allusersIntent);
-        }
+
         return true;
     }
 }
