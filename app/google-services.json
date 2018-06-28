@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "441042150755",
+    "firebase_url": "https://pooltool2-e50ab.firebaseio.com",
+    "project_id": "pooltool2-e50ab",
+    "storage_bucket": "pooltool2-e50ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:441042150755:android:250f24906607ffa2",
+        "android_client_info": {
+          "package_name": "com.example.android.pooltool2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "441042150755-1uiji5mglmq7p0kclg1o11tusulackdt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.pooltool2",
+            "certificate_hash": "132ab9c616c820c71aa87472deabbf3c14f6192b"
+          }
+        },
+        {
+          "client_id": "441042150755-b8eagn248iktq304e2m0m14ignieadbr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqjNW7GlfJ2_B-Cb0eXqUg-_EEGp3k79A"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "441042150755-b8eagn248iktq304e2m0m14ignieadbr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
