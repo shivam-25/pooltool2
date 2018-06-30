@@ -15,6 +15,12 @@
     </item>
 
     <item
+        android:title="All Users"
+        android:id="@+id/main_all_users_button"
+        app:showAsAction="never">
+    </item>
+
+    <item
         android:id="@+id/chat_activity"
         android:title="Chat"
         app:showAsAction="never">

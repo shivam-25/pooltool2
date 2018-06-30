@@ -22,6 +22,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
@@ -53,6 +55,7 @@ public class SettingsActivity extends AppCompatActivity {
         mCurrentUser = FirebaseAuth.getInstance();
         String uid = mCurrentUser.getCurrentUser().getUid();
         mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
+        mUserDatabase.keepSynced(true);
         mUserDatabase.keepSynced(true);
 
         mImageStorage = FirebaseStorage.getInstance().getReference().child("Profile_Image");
@@ -103,8 +106,20 @@ public class SettingsActivity extends AppCompatActivity {
 
                 mName.setText(name);
                 mStatus.setText(status);
-                if(!image.equals("default")) {
-                    Picasso.get().load(image).into(mImage);
+                if(!image.equals("default_profile")) {
+
+                    Picasso.get().load(image).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.default_profile)
+                            .into(mImage, new Callback() {
+                                @Override
+                                public void onSuccess() {
+
+                                }
+
+                                @Override
+                                public void onError(Exception e) {
+                                    Picasso.get().load(image).placeholder(R.drawable.default_profile).into(mImage);
+                                }
+                            });
                 }
             }
 
