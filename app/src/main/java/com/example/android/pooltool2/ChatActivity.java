@@ -78,7 +78,7 @@ public class ChatActivity extends AppCompatActivity {
             finish();
         }
         if(item.getItemId() == R.id.main_activity) {
-            Intent mainIntent = new Intent(ChatActivity.this, MainActivity.class);
+            Intent mainIntent = new Intent(ChatActivity.this, Home.class);
             mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(mainIntent);
             finish();

@@ -26,6 +26,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText RegisterUserName;
     private EditText RegisterUserEmail;
     private EditText RegisterUserPassword;
+    private EditText RegisterUserPhone;
     private Button CreateAccountButton;
     private FirebaseAuth mAuth;
     private DatabaseReference storeUserDefaultDataReference;
@@ -43,6 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
         RegisterUserName = (EditText) findViewById(R.id.register_name);
         RegisterUserEmail = (EditText) findViewById(R.id.register_email);
         RegisterUserPassword = (EditText) findViewById(R.id.register_password);
+        RegisterUserPhone = (EditText) findViewById(R.id.register_phone);
         CreateAccountButton = (Button) findViewById(R.id.create_account_button);
         loadingBar = new ProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
@@ -53,12 +55,13 @@ public class RegisterActivity extends AppCompatActivity {
                 final String name = RegisterUserName.getText().toString();
                 String email = RegisterUserEmail.getText().toString();
                 String password = RegisterUserPassword.getText().toString();
+                String phone = RegisterUserPhone.getText().toString();
 
-                RegisterAccount(name, email, password);
+                RegisterAccount(name, email, password, phone);
             }
         });
     }
-    private void RegisterAccount(final String name, String email, String password) {
+    private void RegisterAccount(final String name, String email, String password, final String phone) {
         if(TextUtils.isEmpty(name)) {
             Toast.makeText(RegisterActivity.this, "Please write your UserName", Toast.LENGTH_LONG).show();
         }
@@ -67,6 +70,9 @@ public class RegisterActivity extends AppCompatActivity {
         }
         if(TextUtils.isEmpty(password)) {
             Toast.makeText(RegisterActivity.this, "Please write your Password", Toast.LENGTH_LONG).show();
+        }
+        if(TextUtils.isEmpty(phone)) {
+            Toast.makeText(RegisterActivity.this, "Please write your Phone number", Toast.LENGTH_LONG).show();
         }
         else {
             loadingBar.setTitle("Creating New Account");
@@ -79,6 +85,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 String current_user_Id = mAuth.getCurrentUser().getUid();
                                 storeUserDefaultDataReference = FirebaseDatabase.getInstance().getReference().child("Users").child(current_user_Id);
                                 storeUserDefaultDataReference.child("user_name").setValue(name);
+                                storeUserDefaultDataReference.child("user_phone").setValue(phone);
                                 storeUserDefaultDataReference.child("user_status").setValue("Hey I am using Pool-Tool");
                                 storeUserDefaultDataReference.child("user_image").setValue("default_profile");
                                 storeUserDefaultDataReference.child("user_thumb_image").setValue("default_image")
@@ -86,7 +93,7 @@ public class RegisterActivity extends AppCompatActivity {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if(task.isSuccessful()){
-                                                    Intent mainIntent = new Intent(RegisterActivity.this, MainActivity.class);
+                                                    Intent mainIntent = new Intent(RegisterActivity.this, Home.class);
                                                     mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                                     startActivity(mainIntent);
                                                     finish();
